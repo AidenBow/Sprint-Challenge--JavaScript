@@ -15,6 +15,16 @@ class CuboidMaker {
     return `Cuboid Surface Area: ${2 * (this.length * this.width + this.length * this.height + this.width * this.height)}`
   }
 
+  drawCuboid(){ //prints a face of the cuboid
+    let row = '';
+    for (let i = 0; i < this.length; i++){
+      row += '⬛'
+    }
+    for (let i = 0; i < this.height; i++){
+      console.log(row)
+    }
+  }
+
 }
 
 let cuboid = new CuboidMaker({length: 4, width: 5, height: 5})
@@ -47,9 +57,14 @@ class CubeMaker extends CuboidMaker {
 }
 
 let notACube = new CubeMaker({length: 4, width: 5, height: 5})
-let cube = new CubeMaker({length: 3, width: 3, height: 3})
+let cube = new CubeMaker({length: 9, width: 9, height: 9})
 
 console.log(notACube.volume());
 console.log(notACube.surfaceArea());
+
+notACube.drawCuboid();
+
 console.log(cube.volume());
 console.log(cube.surfaceArea());
+
+cube.drawCuboid();
