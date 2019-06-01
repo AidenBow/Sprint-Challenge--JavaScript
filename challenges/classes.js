@@ -15,13 +15,33 @@ class CuboidMaker {
     return `Cuboid Surface Area: ${2 * (this.length * this.width + this.length * this.height + this.width * this.height)}`
   }
 
-  drawCuboid(){ //prints a face of the cuboid
-    let row = '';
-    for (let i = 0; i < this.length; i++){
-      row += '⬛'
+  drawCuboid(){ //prints the front face of the cuboid
+    let row = '⬛';
+    for (let i = 0; i < this.width; i++){ //alternates between black and white squares
+      if (row[i] === '⬜'){
+        row += '⬛'
+      } else {
+        row += '⬜'
+      }
     }
-    for (let i = 0; i < this.height; i++){
-      console.log(row)
+
+    let oddRow = row.slice(1); 
+    if (oddRow[oddRow.length] === '⬛'){ //shifts the odd row's color to the side
+      oddRow += '⬜'
+    } else {
+      oddRow += '⬛'
+    }
+    
+    let evenRow = true;
+
+    for (let i = 0; i < this.height; i++){ //alternates between odd and even rows
+      if (evenRow === true) {
+        console.log(row)
+        evenRow = false
+      } else {
+        console.log(oddRow)
+        evenRow = true
+      }
     }
   }
 
@@ -56,15 +76,13 @@ class CubeMaker extends CuboidMaker {
   }
 }
 
-let notACube = new CubeMaker({length: 4, width: 5, height: 5})
-let cube = new CubeMaker({length: 9, width: 9, height: 9})
+let notACube = new CubeMaker({length: 4, width: 5, height: 3})
+let cube = new CubeMaker({length: 15, width: 15, height: 15})
 
 console.log(notACube.volume());
 console.log(notACube.surfaceArea());
-
 notACube.drawCuboid();
 
 console.log(cube.volume());
 console.log(cube.surfaceArea());
-
 cube.drawCuboid();
